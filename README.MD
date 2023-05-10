@@ -42,3 +42,46 @@ exemplo: ClienteRepository, UserRepository
 		- Vamos definir os recursos do nosso back-end
 
 - Podemos criar uma lista equivalente para transformar o Game para GameMinDTO.
+
+# AULA 2
+
+- Implementar o modelo de domínio []
+- Atualizar seed da base de dados []
+- Game DTO, busca game por id     []
+- Busca todas listas em /lists	  []
+- Consulta SQL, projection, busca de games por lista []
+
+- Modelo de domínio do nosso APP de coleção de jogos: 
+- Relacionamentos
+- No MODELO DE DOMÍNIO
+	- Pedido (id, data)
+	- Produto (id, descricao, preco)
+	- ItemPedido (quantidade, desconto)
+	- Um PEDIDO tem um ou mais produtos e um PRODUTO pertence a varios pedidos.
+		- ITEM PEDIDO no meio do caminho entre PEDIDO e PRODUTO, essa ENTIDADE é criada devido ao
+		relacionamento, uma vez que um item do pedido pode ter desconto e quantidade.
+		- No caso da modelagem de um relacionamento N para N com informações adicionais, no diagrama de classe
+		cria-se uma classe de associação
+		- Normalmente, cria-se um modelo de objetos para exemplificar o diagrama de classe em sua implementação.
+- No MODELO RELACIONAL (Banco de Dados)
+	- tb_pedido (id e data)
+	- tb_produto (id, descricao e preco)
+	- tb_item_pedido (pedido_id, produto_id, quantidade e desconto) --> Tabela de associação
+- Na aplicação que estamos desenvolvendo temos:
+	- Game(<<pk>>id, title, year, genre...)
+	- Belonging(position)
+	- GameList(<<pk>>id, name)
+	- Cada Game pertence a Várias listas
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
