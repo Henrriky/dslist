@@ -72,7 +72,8 @@ exemplo: ClienteRepository, UserRepository
 - Game DTO, busca game por id     [X]
 	- Como as informações que vão ser retornadas através da requisição são todos os campos da tabela, é necessário
 	criar um novo objeto de transferência de dados.
-- Busca todas listas em /lists	  []
+- Busca todas listas em /lists	  [X]
+	- Aplicar a mesma lógica utilizada para a criação da rota games
 - Consulta SQL, projection, busca de games por lista []
 
 
