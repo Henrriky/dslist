@@ -67,9 +67,11 @@ exemplo: ClienteRepository, UserRepository
 		- Belonging(position)
 		- GameList(<<pk>>id, name)
 		- Cada Game pertence a Várias listas	
-- Atualizar seed da base de dados []
-	- 
-- Game DTO, busca game por id     []
+- Atualizar seed da base de dados [X]
+	- Atualizar o arquivo import.sql
+- Game DTO, busca game por id     [X]
+	- Como as informações que vão ser retornadas através da requisição são todos os campos da tabela, é necessário
+	criar um novo objeto de transferência de dados.
 - Busca todas listas em /lists	  []
 - Consulta SQL, projection, busca de games por lista []
 
