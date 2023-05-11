@@ -27,7 +27,6 @@ public class GameController {
 	
 	@GetMapping(value = "/{id}") //id dinâmico, route params
 	public GameDTO findById(@PathVariable Long id) {	
-		
 		GameDTO result = gameService.findById(id);
 		return result;
 	}

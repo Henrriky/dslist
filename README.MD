@@ -1,5 +1,12 @@
 # AULA 1
 
+
+- Tópicos: 
+	- Conceitos (Sistemas WEB e recursos), Cliente/Servidor(HTTP, JSON), Padrão Rest para API WEB
+	- Estruturação do projeto Spring Rest
+	- Entidades e ORM
+	- Database seeding
+	- Padrão camadas (Controller, Service e Repository)
 - ORM (Object relational mapping), técnica utilizada para elaborar tabelas do banco de dados através das classes
 e objetos definidos na linguagem de programação, fazendo um mapeamento dos seus atributos. Nesse caso utilizamos
 o Jakarta Persistence para fazer mapeamento da tabela Game através da classe Game e seus atributos.
@@ -45,7 +52,11 @@ exemplo: ClienteRepository, UserRepository
 
 # AULA 2
 
-- Tópicos absorvidos: Relacionamento N-N, Classe de associação, embeddedid, consultas SQL no Spring Data JPA e Projection
+- Tópicos absorvidos: 
+	- Relacionamento N-N, 
+	- Classe de associação (Embedded id) 
+	- Consultas SQL no Spring Data JPA e Projection
+	
 - Implementar o modelo de domínio [X]
 	- Modelo de domínio do nosso APP de coleção de jogos: 
 	- Relacionamentos
@@ -77,7 +88,36 @@ exemplo: ClienteRepository, UserRepository
 	- Aplicar a mesma lógica utilizada para a criação da rota games
 - Consulta SQL, projection, busca de games por lista [X]
 
+# AULA 3
 
+- Tópicos absorvidos: 
+	- Perfis de projeto 
+	- Ambiente com Docker Compose 
+	- Processo de Homologação Local
+	- Processo de deploy com CI/CD
+	- Configuração de CORS
+	
+- Perfis de projeto
+	1. Perfis de desenvolvimento de testes
+		- test
+		- Banco de Dados H2
+	2. Perfil de homologação / staging
+		- dev
+		- Banco de dados Postgres de homologação
+	3. Perfil de produção
+		- prod
+		- Banco de dados Postgres de produção
+ - Docker
+ 	- SGBD (Postgrees Servidor)
+ 	- Interface Gráfica dos Dados (PG Admin)
+ 	- Baixe o arquivo .yml, que contém informações do container que será criado
+ 	- Vá na pasta e execute `docker-compose up -d`
+ 	- Depois de baixar o Postgree ja vai estar disponivel localmente, é só acessar localhost:5050
+ - Homologação Local
+ 	1. Criar perfis de projeto
+ 		* application.properties --> Configuração dos perfis ativos
+ 		* Criar cada perfil através da flag -dev -test e -prod
+ 	
 	
 	
 
