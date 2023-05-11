@@ -45,6 +45,7 @@ exemplo: ClienteRepository, UserRepository
 
 # AULA 2
 
+- Tópicos absorvidos: Relacionamento N-N, Classe de associação, embeddedid, consultas SQL no Spring Data JPA e Projection
 - Implementar o modelo de domínio [X]
 	- Modelo de domínio do nosso APP de coleção de jogos: 
 	- Relacionamentos
@@ -74,7 +75,7 @@ exemplo: ClienteRepository, UserRepository
 	criar um novo objeto de transferência de dados.
 - Busca todas listas em /lists	  [X]
 	- Aplicar a mesma lógica utilizada para a criação da rota games
-- Consulta SQL, projection, busca de games por lista []
+- Consulta SQL, projection, busca de games por lista [X]
 
 
 	
