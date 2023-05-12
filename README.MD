@@ -113,21 +113,38 @@ exemplo: ClienteRepository, UserRepository
  	- Baixe o arquivo .yml, que contém informações do container que será criado
  	- Vá na pasta e execute `docker-compose up -d`
  	- Depois de baixar o Postgree ja vai estar disponivel localmente, é só acessar localhost:5050
- - Homologação Local
- 	1. Criar perfis de projeto
- 		* application.properties --> Configuração dos perfis ativos
- 		* Criar cada perfil através da flag -dev -test e -prod
- 		* Gerar script da base de dados
- 		* retirar as anotações do application-dev.properties
- 			- Ele irá criar automaticamente um arquivo chamado create.sql
- 			- Esse arquivo contém todos os comandos SQL que eram executados de forma automática com o ambiente
- 			de testes com o H2 e ORM.
- 			- Nesse caso, como estamos no ambiente de desenvolvimento precisamos criar manualmente essas tabelas
- 			através do arquivo create.sql gerado pela springboot
- 		* Agora nosso banco de dados está pronto para ser conectado com nosso sistema
- 		* Entretanto, a rota de acessar os games de uma lista não está funcionando, devido a um problema
- 		de homologação, que é a presença de crase (``) na query de inner join, o que o postgrees não aceita.
- 			- Podemos fazer isso alterando o `year` para `gameYear` 
+1. Perfil de homologação / staging
+	* application.properties --> Configuração dos perfis ativos
+	* Criar cada perfil através da flag -dev -test e -prod
+	* Gerar script da base de dados
+	* retirar as anotações do application-dev.properties
+		- Ele irá criar automaticamente um arquivo chamado create.sql
+		- Esse arquivo contém todos os comandos SQL que eram executados de forma automática com o ambiente
+		de testes com o H2 e ORM.
+		- Nesse caso, como estamos no ambiente de desenvolvimento precisamos criar manualmente essas tabelas
+		através do arquivo create.sql gerado pela springboot
+	* Agora nosso banco de dados está pronto para ser conectado com nosso sistema
+	* Entretanto, a rota de acessar os games de uma lista não está funcionando, devido a um problema
+	de homologação, que é a presença de crase (``) na query de inner join, o que o postgrees não aceita.
+		- Podemos fazer isso alterando o `year` para `gameYear` 
+2. Perfil de produção
+	* Implantação na nuvem com o Railway
+		- Requisitos: Script SQL para criação e seed dos dados, aplicativo de gestão de banco de dados (pgAdmin)
+		- Passos
+			1. Fornecer um servidor de banco de dados
+			2. Criar a base de dados e seed
+			3. Criar uma aplicação Railway vinculada ao repositório
+			4. Configurar variáveis de ambiente
+5. Configurar dominio público para a aplicação
+	- Semelhante ao localhost:8080, só que com um domínio que realmente funciona na internet
+6. Testar no Postman
+7. Testar a esteira do CI/CD
+	- Uma modificação no projeto --> Quando mandar para o github uma alteração na branch main automaticamente vai disparar um novo deploy no railway,
+	com isso ele já vai integrar essa mudança e implantar ela la no railway
+		- Por isso se chama integração continua (CI)
+		- E também entrega contínua (CD)
+	
+ 
  	
 	
 	
