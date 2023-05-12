@@ -117,6 +117,17 @@ exemplo: ClienteRepository, UserRepository
  	1. Criar perfis de projeto
  		* application.properties --> Configuração dos perfis ativos
  		* Criar cada perfil através da flag -dev -test e -prod
+ 		* Gerar script da base de dados
+ 		* retirar as anotações do application-dev.properties
+ 			- Ele irá criar automaticamente um arquivo chamado create.sql
+ 			- Esse arquivo contém todos os comandos SQL que eram executados de forma automática com o ambiente
+ 			de testes com o H2 e ORM.
+ 			- Nesse caso, como estamos no ambiente de desenvolvimento precisamos criar manualmente essas tabelas
+ 			através do arquivo create.sql gerado pela springboot
+ 		* Agora nosso banco de dados está pronto para ser conectado com nosso sistema
+ 		* Entretanto, a rota de acessar os games de uma lista não está funcionando, devido a um problema
+ 		de homologação, que é a presença de crase (``) na query de inner join, o que o postgrees não aceita.
+ 			- Podemos fazer isso alterando o `year` para `gameYear` 
  	
 	
 	
