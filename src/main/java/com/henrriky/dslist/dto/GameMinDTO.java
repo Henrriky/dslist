@@ -1,4 +1,5 @@
 package com.henrriky.dslist.dto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.henrriky.dslist.entities.Game;
 import com.henrriky.dslist.projections.GameMinProjection;
 
@@ -8,6 +9,9 @@ public class GameMinDTO {
 	private Integer year;
 	private String imgUrl;
 	private String shortDescription;
+	
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	private Integer position;
 	
 	public GameMinDTO() {
 		
@@ -27,6 +31,7 @@ public class GameMinDTO {
 		year = projection.getGameYear();
 		imgUrl = projection.getImgUrl();
 		shortDescription = projection.getShortDescription();
+		position = projection.getPosition();
 	}
 
 	public Long getId() {
@@ -48,7 +53,11 @@ public class GameMinDTO {
 	public String getShortDescription() {
 		return shortDescription;
 	}
-	
+
+	public Integer getPosition() {
+		return position;
+	}
+
 	
 	
 	

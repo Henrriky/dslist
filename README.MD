@@ -94,7 +94,7 @@ exemplo: ClienteRepository, UserRepository
 	- Perfis de projeto 
 	- Ambiente com Docker Compose 
 	- Processo de Homologação Local
-	- Processo de deploy com CI/CD
+	- Processo de deploy com CI/CD no Railway
 	- Configuração de CORS
 	
 - Perfis de projeto
@@ -143,6 +143,10 @@ exemplo: ClienteRepository, UserRepository
 	com isso ele já vai integrar essa mudança e implantar ela la no railway
 		- Por isso se chama integração continua (CI)
 		- E também entrega contínua (CD)
+		
+# AULA 4
+
+- Quando uma requisição é idenpotente utilizamos o verbo PUT. Já quando não é utilizamos o POST
 	
  
  	

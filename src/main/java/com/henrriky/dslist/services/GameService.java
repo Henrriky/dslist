@@ -1,6 +1,8 @@
 package com.henrriky.dslist.services;
 
+
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,6 @@ public class GameService {
 	
 	@Transactional(readOnly = true)
 	public GameDTO findById(Long gameId) {
-
 		Game result = gameRepository.findById(gameId).get();
 		GameDTO dto = new GameDTO(result);
 		return dto;	
@@ -42,7 +43,5 @@ public class GameService {
 		List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList();
 		return dto;
 	}
-	
-
-	
+		
 }
