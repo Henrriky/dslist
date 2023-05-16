@@ -1,5 +1,9 @@
 # 💻 Projeto
 
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center">
+  <img alt="versão 1 do projeto" title="#portfolio" src=".github/dslist-model.png" style="border-radius: 10px">
+</p>  
+
 - Essa aplicação desenvolvida com Spring Boot tem como funcionalidade uma restAPI que fornece dados sobre filmes, tal como as categorias que esses filmes estão inseridos. Ademais, esses filmes quando forem exibidos no front-end, tem a possibilidade de alterar a posição do filme em relação a sua categoria e os demais filmes com a tabela belonging (pertencimento) que foi desenvolvida. Além disso, o projeto contém boas práticas de programação que estão alinhadas com o mercado, como a implementação de conceitos avançados como Domain Drive Design e Padrão de Camadas. 
 
 # ✨ Ferramentas, conceitos e tecnologias utilizadas
