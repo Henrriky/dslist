@@ -1,164 +1,24 @@
-# AULA 1
+# 💻 Projeto
+
+- Essa aplicação desenvolvida com Spring Boot tem como funcionalidade uma restAPI que fornece dados sobre filmes, tal como as categorias que esses filmes estão inseridos. Ademais, esses filmes quando forem exibidos no front-end, tem a possibilidade de alterar a posição do filme em relação a sua categoria e os demais filmes com a tabela belonging (pertencimento) que foi desenvolvida. Além disso, o projeto contém boas práticas de programação que estão alinhadas com o mercado, como a implementação de conceitos avançados como Domain Drive Design e Padrão de Camadas. 
+
+# ✨ Ferramentas, conceitos e tecnologias utilizadas
+
+- Java | Spring Boot | Hibernate | JPA | H2 | Railway | PostgreSQL | Docker
+- **Conceitos**
+    * *Sistemas WEB e recursos **|** Cliente/Servidor(HTTP, JSON) **|** Padrão Rest para API WEB*
+    * *Estruturação de projetos Spring Boot **|** Entidades e ORM **|** Database seeding*
+    * *Padrão camadas (Controller, Service e Repository) **|** DTOs*
+    * *Relacionamento N-N **|** Classe de associação **|**Consultas SQL no Spring Data JPA e Projection*
+    * *Perfis de projeto (test, dev, prod) **|** Ambiente com Docker Compose **|** Processo de Homologação Local*
+    * *Processo de deploy com CI/CD no Railway  Configuração de CORS e Configuração de variáveis de ambiente*
+    * *Implantação de um projeto real na nuvem*
 
 
-- Tópicos: 
-	- Conceitos (Sistemas WEB e recursos), Cliente/Servidor(HTTP, JSON), Padrão Rest para API WEB
-	- Estruturação do projeto Spring Rest
-	- Entidades e ORM
-	- Database seeding
-	- Padrão camadas (Controller, Service e Repository)
-- ORM (Object relational mapping), técnica utilizada para elaborar tabelas do banco de dados através das classes
-e objetos definidos na linguagem de programação, fazendo um mapeamento dos seus atributos. Nesse caso utilizamos
-o Jakarta Persistence para fazer mapeamento da tabela Game através da classe Game e seus atributos.
-- JPA define o padrão do ORM, ou seja, como ele deve ser implementado no Java
-	- Hibernate, EclipseLink, Toplink, OpenJPA são implementações do padrão JPA
-	- JPA é uma especificação e ORM é a ferramenta (Hibernate, Entity, etc)
-- Padrão de Camadas
-	- Front-end(App): Conversa com o Back-end através de requisições HTTP/REST, com o retorno em JSON
-	- Back-end
-		- Controlador(REST): Conversa com a Transação através do DTO
-		- Transação
-			- Camada de serviço: Conversa com a Camada de acesso a Dados através das Entities/ORM
-			- Camada de acesso a dados: O repository, ele que faz a consulta no banco, traz os Games e devolve
-			isso para uma classe de service e esse serviço devolve o DTO equivalente para o controlador.
-			
-- Quando queremos acessar os dados do banco de dados nem sempre vamos querer todas as propriedades de uma tabela
-Por isso, nós precisamos criar um classe auxiliar para projetar os dados que vão ser requisitos, e que vai
-ser chamada de `DTO` Data Transfer Object.
-- Nesse exemplo vamos criar a classe GameMinDTO, que irá conter apenas as informações mínimas que serão 
-requisitadas pela API. Após a definição de suas propriedades vamos criar um construtor que vai receber
-uma entidade game e pegar os dados dela para atribuir no GameMinDTO.
+# 🎮 Deploy
 
-- Vamos criar agora a interface GameRepository, que é a camada de acesso aos dados. 
-- Cada entidade, quando vai ter seus dados alterados deve ter uma interface criada para ele, como por 
-exemplo: ClienteRepository, UserRepository
-	- Cria-se três arquivos GameController, GameService e GameRepository
-	- GameRepository: Possui o acesso ao banco de dados.
-	- GameService: Responsável por implementar a lógica de negócio, que nada mais é do que uma regra que tem que
-	acontecer
-		- Exemplo: Sistema de comércio, ele precisa registrar um pedido, e nesse registro é necessário, 
-		verificar o estoque, dar baixa no estoque, enviar email avisando, processar cartão de crédito. Toda 
-		essa regra de negócio complexa é gerada com o registro de um pedido. Essa regra de negócio fica na camada
-		de serviço. 
-		- Esse Service é um intermediário entre o Repository e o Controller.
-		- O service tem o componente repository injetado
-		- Quando acessamos o repository injetado, através do ORM ele possui diversos métodos herdados que manipulam 
-		a tabela do banco de dados
-	- GameController: Porta de entrada do back-end, se comunica através do Service, que retorna um DTO para ele.
-		- É esse componente que expõe o Back-end para o Front-end, e que define os endpoints
-		- Vamos definir os recursos do nosso back-end
+- Deploy no Railway, porém, baixando o projeto você consegue executá-lo no perfil de teste com o banco  em memória H2.
 
-- Podemos criar uma lista equivalente para transformar o Game para GameMinDTO.
+# ✅ Créditos
 
-# AULA 2
-
-- Tópicos absorvidos: 
-	- Relacionamento N-N, 
-	- Classe de associação (Embedded id) 
-	- Consultas SQL no Spring Data JPA e Projection
-	
-- Implementar o modelo de domínio [X]
-	- Modelo de domínio do nosso APP de coleção de jogos: 
-	- Relacionamentos
-	- No MODELO DE DOMÍNIO
-		- Pedido (id, data)
-		- Produto (id, descricao, preco)
-		- ItemPedido (quantidade, desconto)
-		- Um PEDIDO tem um ou mais produtos e um PRODUTO pertence a varios pedidos.
-			- ITEM PEDIDO no meio do caminho entre PEDIDO e PRODUTO, essa ENTIDADE é criada devido ao
-			relacionamento, uma vez que um item do pedido pode ter desconto e quantidade.
-			- No caso da modelagem de um relacionamento N para N com informações adicionais, no diagrama de classe
-			cria-se uma classe de associação
-			- Normalmente, cria-se um modelo de objetos para exemplificar o diagrama de classe em sua implementação.
-	- No MODELO RELACIONAL (Banco de Dados)
-		- tb_pedido (id e data)
-		- tb_produto (id, descricao e preco)
-		- tb_item_pedido (pedido_id, produto_id, quantidade e desconto) --> Tabela de associação
-	- Na aplicação que estamos desenvolvendo temos:
-		- Game(<<pk>>id, title, year, genre...)
-		- Belonging(position)
-		- GameList(<<pk>>id, name)
-		- Cada Game pertence a Várias listas	
-- Atualizar seed da base de dados [X]
-	- Atualizar o arquivo import.sql
-- Game DTO, busca game por id     [X]
-	- Como as informações que vão ser retornadas através da requisição são todos os campos da tabela, é necessário
-	criar um novo objeto de transferência de dados.
-- Busca todas listas em /lists	  [X]
-	- Aplicar a mesma lógica utilizada para a criação da rota games
-- Consulta SQL, projection, busca de games por lista [X]
-
-# AULA 3
-
-- Tópicos absorvidos: 
-	- Perfis de projeto 
-	- Ambiente com Docker Compose 
-	- Processo de Homologação Local
-	- Processo de deploy com CI/CD no Railway
-	- Configuração de CORS
-	
-- Perfis de projeto
-	1. Perfis de desenvolvimento de testes
-		- test
-		- Banco de Dados H2
-	2. Perfil de homologação / staging
-		- dev
-		- Banco de dados Postgres de homologação
-	3. Perfil de produção
-		- prod
-		- Banco de dados Postgres de produção
- - Docker
- 	- SGBD (Postgrees Servidor)
- 	- Interface Gráfica dos Dados (PG Admin)
- 	- Baixe o arquivo .yml, que contém informações do container que será criado
- 	- Vá na pasta e execute `docker-compose up -d`
- 	- Depois de baixar o Postgree ja vai estar disponivel localmente, é só acessar localhost:5050
-1. Perfil de homologação / staging
-	* application.properties --> Configuração dos perfis ativos
-	* Criar cada perfil através da flag -dev -test e -prod
-	* Gerar script da base de dados
-	* retirar as anotações do application-dev.properties
-		- Ele irá criar automaticamente um arquivo chamado create.sql
-		- Esse arquivo contém todos os comandos SQL que eram executados de forma automática com o ambiente
-		de testes com o H2 e ORM.
-		- Nesse caso, como estamos no ambiente de desenvolvimento precisamos criar manualmente essas tabelas
-		através do arquivo create.sql gerado pela springboot
-	* Agora nosso banco de dados está pronto para ser conectado com nosso sistema
-	* Entretanto, a rota de acessar os games de uma lista não está funcionando, devido a um problema
-	de homologação, que é a presença de crase (``) na query de inner join, o que o postgrees não aceita.
-		- Podemos fazer isso alterando o `year` para `gameYear` 
-2. Perfil de produção
-	* Implantação na nuvem com o Railway
-		- Requisitos: Script SQL para criação e seed dos dados, aplicativo de gestão de banco de dados (pgAdmin)
-		- Passos
-			1. Fornecer um servidor de banco de dados
-			2. Criar a base de dados e seed
-			3. Criar uma aplicação Railway vinculada ao repositório
-			4. Configurar variáveis de ambiente
-5. Configurar dominio público para a aplicação
-	- Semelhante ao localhost:8080, só que com um domínio que realmente funciona na internet
-6. Testar no Postman
-7. Testar a esteira do CI/CD
-	- Uma modificação no projeto --> Quando mandar para o github uma alteração na branch main automaticamente vai disparar um novo deploy no railway,
-	com isso ele já vai integrar essa mudança e implantar ela la no railway
-		- Por isso se chama integração continua (CI)
-		- E também entrega contínua (CD)
-		
-# AULA 4
-
-- Quando uma requisição é idenpotente utilizamos o verbo PUT. Já quando não é utilizamos o POST
-	
- 
- 	
-	
-	
-
-
-
-
-
-
-
-
-
-
+- Créditos ao **[Dev Superior](https://www.youtube.com/devsuperior)**
